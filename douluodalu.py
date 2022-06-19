@@ -20,7 +20,8 @@ class DouLuoDaLu5:
         # 读取日志
         with open('日志.txt', 'r') as f1:
             _content_list = f1.readlines()
-
+            
+        # 再次开始爬取小说章节
         with open('日志.txt', 'w') as f1:
             for _content in _content_list:
                 _debug_url: str = _content.split(' ')[-1]
@@ -31,7 +32,7 @@ class DouLuoDaLu5:
                         f'{time.strftime("[%Y-%m-%d %H:%M:%S]", time.localtime(time.time()))} {str(_debug_return_value)} {_debug_url}')
                     print('返回值异常，已记录在日志', end='  ')
                 print(_debug_url, end='')
-                time.sleep(1)
+                time.sleep(1)  # 停顿
 
     def get_urls(self, left: int = 9) -> list:
         """这个函数可以通过主页获取所有章节的网址并返回
