@@ -106,7 +106,7 @@ class DouLuoDaLu5:
             link DouLuoDaLu的实例
 
             mode 模式，可选有
-                debug 尽量别作死
+                debug 将出错的URL再爬一遍
 
                 run 正儿八经地运行
 
