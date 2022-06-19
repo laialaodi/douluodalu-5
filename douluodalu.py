@@ -20,7 +20,7 @@ class DouLuoDaLu5:
         # 读取日志
         with open('日志.txt', 'r') as f1:
             _content_list = f1.readlines()
-            
+
         # 再次开始爬取小说章节
         with open('日志.txt', 'w') as f1:
             for _content in _content_list:
