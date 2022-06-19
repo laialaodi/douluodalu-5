@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# 作者：laialaodi https://www.luogu.com.cn/user/713554 https://github.com/laialaodi
+# 作者：laialaodi https://github.com/laialaodi
 # 本文件遵守 CC-BY-NC-SA 4.0 协议，任何人可以自由复制、散布、展示及演出本作品，但必须署名；且不可作商业用途；
 # 仅在遵守与本著作相同的授权条款下，您才能散布由本作品产生的衍生作品
 
