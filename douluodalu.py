@@ -18,11 +18,11 @@ class DouLuoDaLu5:
         """爬取日志中出错的url"""
 
         # 读取日志
-        with open('日志.txt', 'r') as f1:
+        with open('error.log', 'r') as f1:
             _content_list = f1.readlines()
 
         # 再次开始爬取小说章节
-        with open('日志.txt', 'w') as f1:
+        with open('error.log', 'w') as f1:
             for _content in _content_list:
                 _debug_url: str = _content.split(' ')[-1]
                 _debug_return_value = link.get_info(_debug_url)
@@ -53,6 +53,7 @@ class DouLuoDaLu5:
                 _new_list = []
                 _url_list = re.findall('<dd><a href="(.*?)">.*?</a></dd>', _res.text, flags=re.S)[left:]
 
+                # 获取URL并加入列表
                 for _url in _url_list:
                     _new_list.append('https://www.soshuw.com{}'.format(_url))
                 return _new_list
@@ -81,7 +82,7 @@ class DouLuoDaLu5:
                 _i = int(url.split('/')[-1].split('.')[0])
                 _contents = re.findall(pattern=f'<div class="content" id="con{str(_i)}">(.*?)</div>', string=_res.text,
                                        flags=re.S)
-                with open(f'E:/pg/Python/爬虫/爬取《斗罗大陆》全套小说/爬取《斗罗大陆5重生唐三》全文小说/《斗罗大陆5重生唐三》全文小说/{_title}.txt', 'w+') as f:
+                with open(f'《斗罗大陆5重生唐三》全文小说/{_title}.txt', 'w+') as f:
                     print(_title, end='  ')
                     f.write(_title + '\n')
                     for _content in _contents:
@@ -115,7 +116,7 @@ class DouLuoDaLu5:
             raise RuntimeError('The argument mode cannot execute')
         else:
             if mode == 'debug':
-                link.debug()
+                link.debug(link)
             else:
                 urls = link.get_urls(left + 9)
                 for url in urls:
