@@ -8,7 +8,7 @@ import time
 
 import requests
 
-
+# 请求头
 headers = {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
                          'Chrome/102.0.5005.124 Safari/537.36 Edg/102.0.1245.44'}
 
@@ -16,6 +16,8 @@ headers = {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/
 class DouLuoDaLu5:
     def debug(self, link) -> None:
         """爬取日志中出错的url"""
+
+        # 读取日志
         with open('日志.txt', 'r') as f1:
             _content_list = f1.readlines()
 
