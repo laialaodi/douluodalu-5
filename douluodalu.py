@@ -114,7 +114,7 @@ class DouLuoDaLu5:
             left 从哪一章开始爬取
         """
         if mode != 'debug' and mode != 'run':
-            raise RuntimeError('The argument mode cannot execute')
+            raise RuntimeError('The argument \'mode\' cannot execute. It must be \'run\' or \'debug\'')
         else:
             if mode == 'debug':
                 link.debug(link)
