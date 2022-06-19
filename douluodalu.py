@@ -21,7 +21,7 @@ class DouLuoDaLu5:
         with open('error.log', 'r') as f1:
             _content_list = f1.readlines()
 
-        # 再次开始爬取小说章节
+        # 再次开始爬取出错的URL
         with open('error.log', 'w') as f1:
             for _content in _content_list:
                 _debug_url: str = _content.split(' ')[-1]
@@ -81,7 +81,7 @@ class DouLuoDaLu5:
                 _title = str(re.findall(pattern='<h1>(第\d+章 .*?)</h1>', string=_res.text)[0])
                 _i = int(url.split('/')[-1].split('.')[0])
                 _contents = re.findall(pattern=f'<div class="content" id="con{str(_i)}">(.*?)</div>', string=_res.text,
-                                       flags=re.S)
+                                       flags=re.S)  # flag=re.S是跨行匹配
                 with open(f'《斗罗大陆5重生唐三》全文小说/{_title}.txt', 'w+') as f:
                     print(_title, end='  ')
                     f.write(_title + '\n')
@@ -91,6 +91,7 @@ class DouLuoDaLu5:
                         _content_copy = _content_copy.replace('<br />', '')
                         _content_copy = _content_copy.replace('&nbsp;', ' ')
                         _content_copy = re.sub(pattern='<p>(.*?)</p>', repl='', string=_content_copy, flags=re.S)
+                        # 同上，re.S是跨行匹配
                         _content_copy = _content_copy.strip()
                         f.write(_content_copy + '\n')
                 return 0
