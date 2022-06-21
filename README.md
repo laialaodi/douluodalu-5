@@ -4,7 +4,7 @@
 
 运行需要提前安装 requests 库
 
-douluodalu.py 是类的文件，我把它们打包成了类
+douluodalu.py 是项目类的文件
 
 main.py 是示例文件，可作参考
 
