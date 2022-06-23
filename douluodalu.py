@@ -14,7 +14,7 @@ headers = {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/
 
 
 class DouLuoDaLu5:
-    def debug(self, link) -> None:
+    def debug(self) -> None:
         """爬取日志中出错的url"""
 
         # 读取日志
@@ -25,7 +25,7 @@ class DouLuoDaLu5:
         with open('error.log', 'w') as f1:
             for _content in _content_list:
                 _debug_url: str = _content.split(' ')[-1]
-                _debug_return_value = link.get_info(_debug_url)
+                _debug_return_value = self.get_info(_debug_url)
                 print(_debug_return_value, end='  ')
                 if _debug_return_value != 0:
                     f1.write(
@@ -34,7 +34,8 @@ class DouLuoDaLu5:
                 print(_debug_url, end='')
                 time.sleep(1)  # 停顿
 
-    def get_urls(self, left: int = 9) -> list:
+    @staticmethod
+    def get_urls(left: int = 9) -> list:
         """这个函数可以通过主页获取所有章节的网址并返回
 
         参数
@@ -62,7 +63,8 @@ class DouLuoDaLu5:
         else:
             return [-1]
 
-    def get_info(self, url: str) -> int:
+    @staticmethod
+    def get_info(url: str) -> int:
         """这个函数可以爬取《斗罗大陆5》全文小说并提取信息
 
         参数
@@ -100,7 +102,7 @@ class DouLuoDaLu5:
         else:
             return -1
 
-    def run(self, link, mode: str, left: int) -> None:
+    def run(self, left: int) -> None:
         """这个函数作为主函数
 
         参数
@@ -113,20 +115,14 @@ class DouLuoDaLu5:
 
             left 从哪一章开始爬取
         """
-        if mode != 'debug' and mode != 'run':
-            raise RuntimeError('The argument \'mode\' cannot execute. It must be \'run\' or \'debug\'')
-        else:
-            if mode == 'debug':
-                link.debug(link)
-            else:
-                urls = link.get_urls(left + 9)
-                for url in urls:
-                    return_value = link.get_info(url)
-                    if return_value != 0:
-                        print(return_value, end='  ')
-                        with open('error.log', 'a+') as f:
-                            f.write(
-                                f'{time.strftime("[%Y-%m-%d %H:%M:%S ERROR]", time.localtime(time.time()))} {str(return_value)} {url}\n')
-                        print('返回值异常，已记录在日志', end='  ')
-                    print(url)
-                    time.sleep(1)
+        urls = self.get_urls(left=left + 9)
+        for url in urls:
+            return_value = self.get_info(url)
+            if return_value != 0:
+                print(return_value, end='  ')
+                with open('error.log', 'a+') as f:
+                    f.write(
+                        f'{time.strftime("[%Y-%m-%d %H:%M:%S ERROR]", time.localtime(time.time()))} {str(return_value)} {url}\n')
+                print('返回值异常，已记录在日志', end='  ')
+            print(url)
+            time.sleep(1)

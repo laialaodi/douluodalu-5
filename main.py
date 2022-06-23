@@ -8,4 +8,5 @@ from douluodalu import DouLuoDaLu5
 
 if __name__ == '__main__':
     link = DouLuoDaLu5()  # 类实例化
-    link.run(link=link, mode='debu', left=812)  # 运行
+    # link.debug()
+    link.run(left=812)  # 运行
